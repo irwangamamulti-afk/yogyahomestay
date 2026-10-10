@@ -153,7 +153,7 @@
     <section id="galeri" class="py-16 sm:py-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div><p class="section-kicker uppercase text-xs font-extrabold text-emerald-700">Lihat lebih dekat</p><h2 class="text-3xl sm:text-4xl font-extrabold mt-3">Galeri Yogya Homestay</h2><p class="text-gray-500 mt-3">Foto properti ditampilkan dari Google Drive Anda.</p></div>
+          <div><p class="section-kicker uppercase text-xs font-extrabold text-emerald-700">Lihat lebih dekat</p><h2 class="text-3xl sm:text-4xl font-extrabold mt-3">Galeri Yogya Homestay</h2><p class="text-gray-500 mt-3">Foto properti ditampilkan dari folder images di GitHub.</p></div>
           <span class="text-sm text-gray-500"><i class="fa-regular fa-images mr-2 text-emerald-700"></i>Pilih foto untuk memperbesar</span>
         </div>
         <div id="gallery-grid" class="grid grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
@@ -163,7 +163,7 @@
           <button data-drive-photo="dapur" class="photo-card relative rounded-2xl sm:rounded-3xl overflow-hidden h-48 sm:h-64 text-left bg-emerald-100" aria-label="Perbesar foto dapur"><img class="photo w-full h-full object-cover" alt="Dapur" loading="lazy"><span class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent text-white p-3 sm:p-5 font-bold">Dapur</span></button>
           <button data-drive-photo="teras" class="photo-card relative rounded-2xl sm:rounded-3xl overflow-hidden h-48 sm:h-64 text-left bg-emerald-100" aria-label="Perbesar foto teras"><img class="photo w-full h-full object-cover" alt="Teras rumah" loading="lazy"><span class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent text-white p-3 sm:p-5 font-bold">Teras & Halaman</span></button>
         </div>
-        <p class="text-xs text-gray-400 mt-4"><i class="fa-solid fa-circle-info mr-1"></i>Jika foto belum muncul, periksa ID foto dan izin berbagi Google Drive pada pengaturan di kode.</p>
+        <p class="text-xs text-gray-400 mt-4"><i class="fa-solid fa-circle-info mr-1"></i>Jika foto belum muncul, periksa nama file dan pastikan foto sudah diunggah ke folder images di GitHub.</p>
       </div>
     </section>
 
@@ -220,22 +220,21 @@
 
   <script>
     /*
-      GANTI ID FOTO DI BAWAH DENGAN ID FILE GOOGLE DRIVE ANDA.
-      Contoh: https://drive.google.com/file/d/1AbCdEfGh123456/view
-      Maka isi ID: '1AbCdEfGh123456'
-      Untuk sementara ID yang belum diganti akan menampilkan ilustrasi pengganti.
+      FOTO DISIMPAN DI FOLDER images/ PADA REPOSITORI GITHUB.
+      Pastikan nama file foto sama persis:
+      images/depan.jpg
+      images/kamar.jpg
+      images/ruang-tamu.jpg
+      images/dapur.jpg
+      images/teras.jpg
     */
-    const DRIVE_PHOTOS = {
-      depan:  '1Wbll63u03hbD7ly0qwmxQgU4T4H9X-8G',
-      kamar1: 'GANTI_ID_FOTO_KAMAR_TIDUR',
-      ruang:  'GANTI_ID_FOTO_RUANG_TAMU',
-      dapur:  'GANTI_ID_FOTO_DAPUR',
-      teras:  'GANTI_ID_FOTO_TERAS'
+    const LOCAL_PHOTOS = {
+      depan:  'images/depan.jpg',
+      kamar1: 'images/kamar.jpg',
+      ruang:  'images/ruang-tamu.jpg',
+      dapur:  'images/dapur.jpg',
+      teras:  'images/teras.jpg'
     };
-
-    function driveImageUrl(id) {
-      return 'https://drive.google.com/uc?export=view&id=' + encodeURIComponent(id);
-    }
 
     function placeholderSvg(label) {
       const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
@@ -254,14 +253,14 @@
     }
 
     function setPhoto(img, key) {
-      const id = DRIVE_PHOTOS[key];
+      const photoPath = LOCAL_PHOTOS[key];
       const label = ({depan:'Tampak Depan Homestay',kamar1:'Kamar Tidur',ruang:'Ruang Tamu',dapur:'Dapur',teras:'Teras & Halaman'})[key] || 'Yogya Homestay';
-      if (!id || id.startsWith('1Wbll63u03hbD7ly0qwmxQgU4T4H9X-8G)) {
+      if (!photoPath) {
         img.src = placeholderSvg(label);
         img.dataset.placeholder = 'true';
         return;
       }
-      img.src = driveImageUrl(id);
+      img.src = photoPath;
       img.onerror = function () {
         this.onerror = null;
         this.src = placeholderSvg(label);
