@@ -1,212 +1,327 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yogya Homestay - Pilihan Tepat untuk Menginap di Yogyakarta</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#064e3b">
+  <meta name="description" content="Yogya Homestay — rumah nyaman untuk keluarga dan rombongan di Yogyakarta. Dua kamar tidur, area parkir luas, dan reservasi mudah melalui WhatsApp.">
+  <title>Yogya Homestay | Rumah Nyaman di Yogyakarta</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root { --forest:#064e3b; --forest2:#065f46; --gold:#f5c451; }
+    body { font-family:'DM Sans',sans-serif; color:#17211d; }
+    h1,h2,h3,h4,.brand { font-family:'Manrope',sans-serif; }
+    .hero-bg { background: radial-gradient(ellipse at 12% 15%, rgba(16,185,129,.24), transparent 40%), linear-gradient(135deg,#052e24 0%,#064e3b 58%,#0b6048 100%); }
+    .glass { background:rgba(255,255,255,.11); border:1px solid rgba(255,255,255,.18); backdrop-filter:blur(10px); }
+    .photo { transition:transform .45s ease, filter .45s ease; }
+    .photo-card:hover .photo { transform:scale(1.045); filter:brightness(.9); }
+    .lift { transition:transform .25s ease, box-shadow .25s ease; }
+    .lift:hover { transform:translateY(-4px); box-shadow:0 18px 40px rgba(6,78,59,.10); }
+    .drive-image { background:linear-gradient(135deg,#e8f3ed,#d5e8dd); }
+    .section-kicker { letter-spacing:.16em; }
+    #lightbox { background:rgba(3,18,13,.92); }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+<body class="bg-[#f7f8f5] antialiased">
+  <!--
+    PENGATURAN FOTO GOOGLE DRIVE:
+    1. Upload foto ke Google Drive.
+    2. Klik Bagikan > Akses umum > Siapa saja yang memiliki link (Viewer).
+    3. Salin ID file dari URL Drive. Contoh URL:
+       https://drive.google.com/file/d/1AbCdEfGh123456/view
+       ID file adalah: 1AbCdEfGh123456
+    4. Ganti GANTI_ID_FOTO_... di bagian DRIVE_PHOTOS di bawah.
+    Pastikan izin file adalah "Siapa saja yang memiliki link". Jangan gunakan link folder.
+  -->
+  <header class="fixed top-0 inset-x-0 z-40 text-white transition-all duration-300" id="site-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="h-[78px] flex items-center justify-between">
+        <a href="#beranda" class="flex items-center gap-3" aria-label="Yogya Homestay, beranda">
+          <span class="w-11 h-11 rounded-2xl bg-[#f5c451] text-emerald-950 flex items-center justify-center text-xl shadow-lg"><i class="fa-solid fa-house-chimney"></i></span>
+          <span class="leading-tight">
+            <span class="brand block font-extrabold tracking-wide text-lg sm:text-xl">YOGYA <span class="text-[#f5c451]">HOMESTAY</span></span>
+            <span class="block text-[10px] sm:text-xs text-emerald-100 tracking-wide mt-1">Rumah nyaman di Yogyakarta</span>
+          </span>
+        </a>
+        <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-emerald-50">
+          <a class="hover:text-[#f5c451]" href="#beranda">Beranda</a>
+          <a class="hover:text-[#f5c451]" href="#tentang">Tentang</a>
+          <a class="hover:text-[#f5c451]" href="#fasilitas">Fasilitas</a>
+          <a class="hover:text-[#f5c451]" href="#galeri">Galeri</a>
+          <a class="hover:text-[#f5c451]" href="#lokasi">Lokasi</a>
+        </nav>
+        <a href="https://wa.me/6287715305408?text=Halo%20Yogya%20Homestay%2C%20saya%20ingin%20bertanya%20tentang%20reservasi." target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-2 bg-[#f5c451] hover:bg-amber-300 text-emerald-950 font-bold text-sm px-5 py-3 rounded-full shadow-lg transition">
+          <i class="fa-brands fa-whatsapp text-lg"></i> Reservasi
+        </a>
+        <button id="menu-btn" class="lg:hidden w-11 h-11 rounded-xl glass text-xl" aria-label="Buka menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      </div>
+      <nav id="mobile-menu" class="hidden lg:hidden glass rounded-2xl p-4 mb-4 space-y-1 shadow-xl">
+        <a class="block rounded-lg px-3 py-2 hover:bg-white/10" href="#beranda">Beranda</a>
+        <a class="block rounded-lg px-3 py-2 hover:bg-white/10" href="#tentang">Tentang Homestay</a>
+        <a class="block rounded-lg px-3 py-2 hover:bg-white/10" href="#fasilitas">Fasilitas</a>
+        <a class="block rounded-lg px-3 py-2 hover:bg-white/10" href="#galeri">Galeri Foto</a>
+        <a class="block rounded-lg px-3 py-2 hover:bg-white/10" href="#lokasi">Lokasi & Kontak</a>
+        <a class="block rounded-lg px-3 py-2 font-bold text-[#f5c451]" href="https://wa.me/6287715305408?text=Halo%20Yogya%20Homestay%2C%20saya%20ingin%20bertanya%20tentang%20reservasi." target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp mr-2"></i>Chat WhatsApp</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Header & Navbar Landing Page -->
-    <header class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <!-- Logo & Brand -->
-            <a href="#" class="flex items-center space-x-3">
-                <div class="bg-yellow-400 p-2.5 rounded-xl text-emerald-900 font-bold text-xl shadow">
-                    <i class="fa-solid fa-house-chimney"></i>
-                </div>
-                <div>
-                    <h1 class="text-xl md:text-2xl font-extrabold tracking-wide">YOGYA HOMESTAY</h1>
-                    <p class="text-emerald-200 text-xs hidden sm:block">Pilihan tepat untuk menginap di Yogyakarta</p>
-                </div>
+  <main>
+    <section id="beranda" class="hero-bg text-white pt-32 sm:pt-36 pb-16 sm:pb-24 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[.92fr_1.08fr] gap-10 lg:gap-14 items-center">
+        <div class="relative z-10">
+          <div class="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-xs sm:text-sm font-semibold text-emerald-50 mb-6">
+            <span class="w-2 h-2 rounded-full bg-[#f5c451]"></span> Rumah untuk keluarga & rombongan
+          </div>
+          <h1 class="text-4xl sm:text-5xl xl:text-[3.8rem] font-extrabold leading-[1.12] tracking-tight">Singgah dengan nyaman,<br><span class="text-[#f5c451]">jelajahi Jogja</span> bersama.</h1>
+          <p class="mt-6 text-emerald-100 text-base sm:text-lg leading-8 max-w-xl">Hunian praktis dengan suasana tenang, dua kamar tidur, serta area teras dan parkir yang luas untuk menemani waktu Anda di Yogyakarta.</p>
+          <div class="flex flex-col sm:flex-row gap-3 mt-8">
+            <a href="https://wa.me/6287715305408?text=Halo%20Yogya%20Homestay%2C%20saya%20ingin%20cek%20ketersediaan%20dan%20harga." target="_blank" rel="noopener" class="inline-flex justify-center items-center gap-3 bg-[#f5c451] hover:bg-amber-300 text-emerald-950 font-extrabold px-7 py-4 rounded-full shadow-xl transition">
+              <i class="fa-brands fa-whatsapp text-xl"></i> Tanya Ketersediaan
             </a>
-
-            <!-- Desktop Menu -->
-            <nav class="hidden md:flex items-center space-x-8 font-medium">
-                <a href="#beranda" class="hover:text-yellow-400 transition">Beranda</a>
-                <a href="#fasilitas" class="hover:text-yellow-400 transition">Fasilitas</a>
-                <a href="#lokasi" class="hover:text-yellow-400 transition">Lokasi</a>
-                <a href="#kontak" class="hover:text-yellow-400 transition">Kontak</a>
-            </nav>
-
-            <!-- CTA Button Header -->
-            <div class="hidden lg:block">
-                <a href="https://wa.me/6287715305408?text=Halo%20Yogya%20Homestay,%20saya%20tertarik%20untuk%20reservasi." target="_blank" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow transition flex items-center space-x-2">
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                    <span>Reservasi</span>
-                </a>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <button id="menu-btn" class="md:hidden text-white focus:outline-none text-2xl">
-                <i class="fa-solid fa-bars"></i>
-            </button>
+            <a href="#galeri" class="inline-flex justify-center items-center gap-2 border border-white/30 hover:bg-white/10 px-7 py-4 rounded-full font-bold transition"><i class="fa-regular fa-images"></i> Lihat Foto</a>
+          </div>
+          <div class="grid grid-cols-3 gap-3 mt-10 max-w-lg">
+            <div class="glass rounded-2xl p-4"><i class="fa-solid fa-bed text-[#f5c451] text-xl"></i><strong class="block text-2xl mt-2">2</strong><span class="text-xs text-emerald-100">Kamar tidur</span></div>
+            <div class="glass rounded-2xl p-4"><i class="fa-solid fa-bath text-[#f5c451] text-xl"></i><strong class="block text-2xl mt-2">1</strong><span class="text-xs text-emerald-100">Kamar mandi</span></div>
+            <div class="glass rounded-2xl p-4"><i class="fa-solid fa-car text-[#f5c451] text-xl"></i><strong class="block text-2xl mt-2">Luas</strong><span class="text-xs text-emerald-100">Area parkir</span></div>
+          </div>
         </div>
-
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-emerald-800 px-4 pt-2 pb-4 space-y-3 border-t border-emerald-700">
-            <a href="#beranda" class="block hover:text-yellow-400 transition py-1">Beranda</a>
-            <a href="#fasilitas" class="block hover:text-yellow-400 transition py-1">Fasilitas</a>
-            <a href="#lokasi" class="block hover:text-yellow-400 transition py-1">Lokasi</a>
-            <a href="#kontak" class="block hover:text-yellow-400 transition py-1">Kontak</a>
-            <a href="https://wa.me/6287715305408?text=Halo%20Yogya%20Homestay,%20saya%20tertarik%20untuk%20reservasi." target="_blank" class="block bg-green-500 text-center text-white py-2 rounded-lg font-semibold shadow">
-                <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp (0877-1530-5408)
-            </a>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="beranda" class="bg-gradient-to-b from-emerald-900 to-emerald-800 text-white py-12 md:py-20 px-4">
-        <div class="container mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            <div class="text-center md:text-left space-y-6">
-                <div class="inline-block bg-yellow-400 text-emerald-900 px-4 py-1.5 rounded-full font-bold text-sm shadow">
-                    <i class="fa-solid fa-bed mr-1"></i> Rumah 2 Kamar | 1 Kamar Mandi
-                </div>
-                <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">
-                    Rumah Nyaman untuk Keluarga atau Rombongan![cite: 1]
-                </h2>
-                <p class="text-lg md:text-xl text-emerald-100 italic">
-                    "Nyaman huniannya, luas parkirnya, strategis lokasinya!"[cite: 1]
-                </p>
-                <div>
-                    <a href="https://wa.me/6287715305408?text=Halo%20Yogya%20Homestay,%20saya%20tertarik%20untuk%20reservasi." target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3.5 px-8 rounded-full shadow-lg transition duration-300 inline-flex items-center space-x-3 text-base md:text-lg">
-                        <i class="fa-brands fa-whatsapp text-2xl"></i>
-                        <span>Hubungi WhatsApp</span>
-                    </a>
-                </div>
+        <div class="relative">
+          <div class="absolute -inset-4 rounded-[2rem] border border-white/10 rotate-2"></div>
+          <div class="relative rounded-[1.7rem] overflow-hidden shadow-2xl border border-white/20 bg-emerald-950">
+            <img id="hero-photo" class="w-full h-[330px] sm:h-[460px] object-cover" alt="Tampak depan Yogya Homestay" loading="eager">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+            <div class="absolute bottom-0 inset-x-0 p-5 sm:p-7">
+              <span class="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur px-3 py-1.5 text-xs font-semibold"><i class="fa-solid fa-location-dot text-[#f5c451]"></i> Perumahan Kembang Putih</span>
+              <p class="text-xl sm:text-2xl font-extrabold mt-3">Ruang untuk beristirahat dan berkumpul</p>
+              <p class="text-sm text-white/80 mt-1">Nyaman huniannya, luas parkirnya, strategis lokasinya.</p>
             </div>
-            <div class="flex justify-center">
-                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-emerald-700 w-full max-w-lg">
-                    <!-- Menampilkan Gambar Rumah -->
-                    <img src="1000268384.jpg" alt="Yogya Homestay" class="w-full h-auto object-cover hover:scale-105 transition duration-500">
-                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-white text-center">
-                        <p class="font-semibold text-sm">Fasad / Teras & Garasi Rumah No. 27</p>
-                    </div>
-                </div>
-            </div>
+          </div>
+          <div class="hidden sm:flex absolute -left-8 bottom-10 bg-white text-emerald-950 p-4 rounded-2xl shadow-xl items-center gap-3">
+            <span class="w-11 h-11 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-800 text-xl"><i class="fa-solid fa-people-roof"></i></span>
+            <span><strong class="block text-sm">Cocok untuk bersama</strong><small class="text-gray-500">Keluarga dan rombongan</small></span>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Konten Utama (Fasilitas & Lokasi) -->
-    <main class="container mx-auto px-4 py-12 md:py-16 max-w-6xl space-y-12">
-        
-        <!-- Fasilitas Rumah -->
-        <section id="fasilitas" class="bg-white p-6 md:p-10 rounded-2xl shadow-md border-t-4 border-emerald-600">
-            <h3 class="text-2xl md:text-3xl font-bold text-emerald-800 mb-8 flex items-center">
-                <i class="fa-solid fa-list-check mr-3 text-emerald-600"></i> Fasilitas Rumah[cite: 1]
-            </h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="flex items-center space-x-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 shadow-sm">
-                    <i class="fa-solid fa-bed text-emerald-600 text-2xl w-10 text-center"></i>
-                    <span class="font-semibold text-gray-700">2 Kamar Tidur[cite: 1]</span>
-                </div>
-                <div class="flex items-center space-x-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 shadow-sm">
-                    <i class="fa-solid fa-bath text-emerald-600 text-2xl w-10 text-center"></i>
-                    <span class="font-semibold text-gray-700">1 Kamar Mandi[cite: 1]</span>
-                </div>
-                <div class="flex items-center space-x-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 shadow-sm">
-                    <i class="fa-solid fa-couch text-emerald-600 text-2xl w-10 text-center"></i>
-                    <span class="font-semibold text-gray-700">Ruang Tamu[cite: 1]</span>
-                </div>
-                <div class="flex items-center space-x-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 shadow-sm">
-                    <i class="fa-solid fa-utensils text-emerald-600 text-2xl w-10 text-center"></i>
-                    <span class="font-semibold text-gray-700">Dapur[cite: 1]</span>
-                </div>
-                <div class="flex items-center space-x-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 shadow-sm">
-                    <i class="fa-solid fa-droplet text-emerald-600 text-2xl w-10 text-center"></i>
-                    <span class="font-semibold text-gray-700">Air PDAM[cite: 1]</span>
-                </div>
-                <div class="flex items-center space-x-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 shadow-sm">
-                    <i class="fa-solid fa-bolt text-emerald-600 text-2xl w-10 text-center"></i>
-                    <span class="font-semibold text-gray-700">Listrik 900 Watt[cite: 1]</span>
-                </div>
-                <div class="flex items-center space-x-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 shadow-sm">
-                    <i class="fa-solid fa-car text-emerald-600 text-2xl w-10 text-center"></i>
-                    <span class="font-semibold text-gray-700">Garasi & Teras[cite: 1]</span>
-                </div>
-                <div class="flex items-center space-x-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 shadow-sm">
-                    <i class="fa-solid fa-tree text-emerald-600 text-2xl w-10 text-center"></i>
-                    <span class="font-semibold text-gray-700">Halaman Luas (Parkir Banyak)[cite: 1]</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Lokasi Strategis & QR Code Grid -->
-        <div id="lokasi" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Lokasi Strategis -->
-            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border-t-4 border-red-500 flex flex-col justify-between">
-                <div>
-                    <h3 class="text-2xl font-bold text-red-600 mb-6 flex items-center">
-                        <i class="fa-solid fa-location-dot mr-3"></i> Lokasi Strategis[cite: 1]
-                    </h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start space-x-3">
-                            <i class="fa-solid fa-circle-check text-emerald-600 mt-1 text-lg"></i>
-                            <span class="font-medium text-gray-700">Perumahan Kembang Putih[cite: 1]</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <i class="fa-solid fa-circle-check text-emerald-600 mt-1 text-lg"></i>
-                            <span class="font-medium text-gray-700">Dekat Puncak Bibis[cite: 1]</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <i class="fa-solid fa-circle-check text-emerald-600 mt-1 text-lg"></i>
-                            <span class="font-medium text-gray-700">Dekat kampus baru UIN Sunan Kalijaga[cite: 1]</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="mt-8 p-4 bg-red-50 rounded-xl border border-red-100">
-                    <p class="text-sm text-red-700 font-medium">
-                        <i class="fa-solid fa-info-circle mr-1"></i> Akses jalan mudah dan lingkungan yang tenang, sangat cocok untuk liburan keluarga.
-                    </p>
-                </div>
-            </div>
-
-            <!-- QR Code WhatsApp & Kontak -->
-            <div id="kontak" class="bg-white p-6 md:p-8 rounded-2xl shadow-md text-center border-t-4 border-green-500 flex flex-col justify-between items-center">
-                <div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Scan QR WhatsApp</h3>
-                    <div class="flex justify-center mb-4">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://wa.me/6287715305408" alt="QR Code WhatsApp Yogya Homestay" class="border-4 border-emerald-100 rounded-lg shadow">
-                    </div>
-                    <p class="text-gray-600 font-semibold mb-1">Hubungi Kami Langsung:</p>
-                    <a href="https://wa.me/6287715305408" class="text-2xl md:text-3xl font-extrabold text-green-600 hover:underline">0877-1530-5408[cite: 1]</a>
-                </div>
-                <div class="mt-6 w-full">
-                    <a href="https://wa.me/6287715305408?text=Halo%20Yogya%20Homestay,%20saya%20tertarik%20untuk%20reservasi." target="_blank" class="w-full block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-xl shadow transition text-center">
-                        <i class="fa-brands fa-whatsapp mr-2 text-xl"></i> Chat via WhatsApp Sekarang
-                    </a>
-                </div>
-            </div>
+    <section id="tentang" class="py-16 sm:py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <p class="section-kicker uppercase text-xs font-extrabold text-emerald-700">Selamat datang</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 leading-tight">Tempat beristirahat yang terasa seperti rumah sendiri.</h2>
+          <p class="mt-5 text-gray-600 leading-8">Yogya Homestay menawarkan pilihan hunian untuk Anda yang membutuhkan ruang berkumpul, beristirahat, dan menikmati perjalanan di Yogyakarta. Tata ruang rumah yang praktis serta teras dan area parkir yang luas membuatnya nyaman untuk kunjungan bersama keluarga atau rombongan.</p>
+          <div class="mt-7 space-y-4">
+            <div class="flex gap-3"><span class="mt-1 text-emerald-700"><i class="fa-solid fa-circle-check"></i></span><p class="text-gray-700"><strong>Ruang untuk berkumpul</strong><br><span class="text-sm text-gray-500">Ruang tamu dan dapur untuk kebutuhan sehari-hari.</span></p></div>
+            <div class="flex gap-3"><span class="mt-1 text-emerald-700"><i class="fa-solid fa-circle-check"></i></span><p class="text-gray-700"><strong>Parkir lebih leluasa</strong><br><span class="text-sm text-gray-500">Teras, garasi, dan halaman luas sesuai informasi properti.</span></p></div>
+            <div class="flex gap-3"><span class="mt-1 text-emerald-700"><i class="fa-solid fa-circle-check"></i></span><p class="text-gray-700"><strong>Reservasi langsung</strong><br><span class="text-sm text-gray-500">Hubungi pengelola untuk konfirmasi harga, tanggal, dan ketersediaan.</span></p></div>
+          </div>
         </div>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-emerald-900 text-emerald-200 text-center py-6 mt-12 border-t border-emerald-800">
-        <div class="container mx-auto px-4">
-            <p>&copy; 2026 Yogya Homestay (yogyahomestay.com). All Rights Reserved.</p>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="photo-card rounded-3xl overflow-hidden h-56 sm:h-72 bg-emerald-100"><img data-drive-photo="ruang" class="photo w-full h-full object-cover" alt="Ruang dalam homestay" loading="lazy"></div>
+          <div class="photo-card rounded-3xl overflow-hidden h-56 sm:h-72 mt-8 bg-emerald-100"><img data-drive-photo="teras" class="photo w-full h-full object-cover" alt="Teras dan area rumah" loading="lazy"></div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <!-- JavaScript untuk Toggle Menu Mobile -->
-    <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+    <section id="fasilitas" class="py-16 sm:py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mx-auto text-center">
+          <p class="section-kicker uppercase text-xs font-extrabold text-emerald-700">Yang tersedia</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">Fasilitas untuk kebutuhan Anda</h2>
+          <p class="text-gray-500 mt-4 leading-7">Informasi fasilitas berdasarkan data properti. Silakan konfirmasi detail saat melakukan reservasi.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 mt-10">
+          <div class="lift rounded-2xl border border-gray-100 bg-[#f8faf8] p-5 sm:p-6"><span class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-xl"><i class="fa-solid fa-bed"></i></span><h3 class="font-extrabold mt-4">2 Kamar Tidur</h3><p class="text-sm text-gray-500 mt-2">Ruang istirahat untuk keluarga atau rombongan.</p></div>
+          <div class="lift rounded-2xl border border-gray-100 bg-[#f8faf8] p-5 sm:p-6"><span class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-xl"><i class="fa-solid fa-bath"></i></span><h3 class="font-extrabold mt-4">1 Kamar Mandi</h3><p class="text-sm text-gray-500 mt-2">Kebutuhan mandi selama menginap.</p></div>
+          <div class="lift rounded-2xl border border-gray-100 bg-[#f8faf8] p-5 sm:p-6"><span class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-xl"><i class="fa-solid fa-couch"></i></span><h3 class="font-extrabold mt-4">Ruang Tamu</h3><p class="text-sm text-gray-500 mt-2">Tempat bersantai dan berkumpul bersama.</p></div>
+          <div class="lift rounded-2xl border border-gray-100 bg-[#f8faf8] p-5 sm:p-6"><span class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-xl"><i class="fa-solid fa-utensils"></i></span><h3 class="font-extrabold mt-4">Dapur</h3><p class="text-sm text-gray-500 mt-2">Area untuk kebutuhan dapur harian.</p></div>
+          <div class="lift rounded-2xl border border-gray-100 bg-[#f8faf8] p-5 sm:p-6"><span class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-xl"><i class="fa-solid fa-droplet"></i></span><h3 class="font-extrabold mt-4">Air PDAM</h3><p class="text-sm text-gray-500 mt-2">Sumber air sesuai informasi properti.</p></div>
+          <div class="lift rounded-2xl border border-gray-100 bg-[#f8faf8] p-5 sm:p-6"><span class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-xl"><i class="fa-solid fa-bolt"></i></span><h3 class="font-extrabold mt-4">Listrik 900 VA</h3><p class="text-sm text-gray-500 mt-2">Daya listrik 900 watt sesuai informasi awal.</p></div>
+          <div class="lift rounded-2xl border border-gray-100 bg-[#f8faf8] p-5 sm:p-6"><span class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-xl"><i class="fa-solid fa-warehouse"></i></span><h3 class="font-extrabold mt-4">Garasi & Teras</h3><p class="text-sm text-gray-500 mt-2">Area depan rumah untuk akses dan aktivitas.</p></div>
+          <div class="lift rounded-2xl border border-gray-100 bg-[#f8faf8] p-5 sm:p-6"><span class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-xl"><i class="fa-solid fa-car-side"></i></span><h3 class="font-extrabold mt-4">Halaman Luas</h3><p class="text-sm text-gray-500 mt-2">Area parkir luas; kapasitas kendaraan perlu dikonfirmasi.</p></div>
+        </div>
+      </div>
+    </section>
 
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+    <section id="galeri" class="py-16 sm:py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div><p class="section-kicker uppercase text-xs font-extrabold text-emerald-700">Lihat lebih dekat</p><h2 class="text-3xl sm:text-4xl font-extrabold mt-3">Galeri Yogya Homestay</h2><p class="text-gray-500 mt-3">Foto properti ditampilkan dari Google Drive Anda.</p></div>
+          <span class="text-sm text-gray-500"><i class="fa-regular fa-images mr-2 text-emerald-700"></i>Pilih foto untuk memperbesar</span>
+        </div>
+        <div id="gallery-grid" class="grid grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+          <button data-drive-photo="depan" class="photo-card relative rounded-2xl sm:rounded-3xl overflow-hidden h-48 sm:h-72 lg:col-span-2 lg:row-span-2 lg:h-[37rem] text-left bg-emerald-100" aria-label="Perbesar foto tampak depan"><img class="photo w-full h-full object-cover" alt="Tampak depan rumah" loading="lazy"><span class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent text-white p-4 sm:p-6 font-bold">Tampak Depan & Parkir</span></button>
+          <button data-drive-photo="kamar1" class="photo-card relative rounded-2xl sm:rounded-3xl overflow-hidden h-48 sm:h-72 text-left bg-emerald-100" aria-label="Perbesar foto kamar tidur 1"><img class="photo w-full h-full object-cover" alt="Kamar tidur" loading="lazy"><span class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent text-white p-3 sm:p-5 font-bold">Kamar Tidur</span></button>
+          <button data-drive-photo="ruang" class="photo-card relative rounded-2xl sm:rounded-3xl overflow-hidden h-48 sm:h-72 text-left bg-emerald-100" aria-label="Perbesar foto ruang tamu"><img class="photo w-full h-full object-cover" alt="Ruang tamu" loading="lazy"><span class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent text-white p-3 sm:p-5 font-bold">Ruang Tamu</span></button>
+          <button data-drive-photo="dapur" class="photo-card relative rounded-2xl sm:rounded-3xl overflow-hidden h-48 sm:h-64 text-left bg-emerald-100" aria-label="Perbesar foto dapur"><img class="photo w-full h-full object-cover" alt="Dapur" loading="lazy"><span class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent text-white p-3 sm:p-5 font-bold">Dapur</span></button>
+          <button data-drive-photo="teras" class="photo-card relative rounded-2xl sm:rounded-3xl overflow-hidden h-48 sm:h-64 text-left bg-emerald-100" aria-label="Perbesar foto teras"><img class="photo w-full h-full object-cover" alt="Teras rumah" loading="lazy"><span class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent text-white p-3 sm:p-5 font-bold">Teras & Halaman</span></button>
+        </div>
+        <p class="text-xs text-gray-400 mt-4"><i class="fa-solid fa-circle-info mr-1"></i>Jika foto belum muncul, periksa ID foto dan izin berbagi Google Drive pada pengaturan di kode.</p>
+      </div>
+    </section>
 
-        // Tutup menu mobile ketika salah satu link diklik
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-    </script>
+    <section id="lokasi" class="py-16 sm:py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-8">
+        <div class="rounded-3xl bg-[#f7f8f5] p-7 sm:p-10">
+          <p class="section-kicker uppercase text-xs font-extrabold text-emerald-700">Temukan kami</p>
+          <h2 class="text-3xl font-extrabold mt-3">Lokasi & akses</h2>
+          <p class="text-gray-600 leading-7 mt-4">Yogya Homestay berada di Perumahan Kembang Putih, dengan informasi lokasi dekat Puncak Bibis dan kawasan kampus baru UIN Sunan Kalijaga seperti yang tercantum pada informasi awal.</p>
+          <div class="space-y-4 mt-6">
+            <div class="flex gap-3 items-start"><i class="fa-solid fa-location-dot text-emerald-700 mt-1"></i><div><strong>Perumahan Kembang Putih</strong><p class="text-sm text-gray-500 mt-1">Alamat dan titik lokasi detail dapat dikonfirmasi kepada pengelola.</p></div></div>
+            <div class="flex gap-3 items-start"><i class="fa-solid fa-mountain-sun text-emerald-700 mt-1"></i><div><strong>Dekat Puncak Bibis</strong><p class="text-sm text-gray-500 mt-1">Konfirmasi rute perjalanan sesuai titik lokasi yang tepat.</p></div></div>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=Perumahan+Kembang+Putih+Yogyakarta" target="_blank" rel="noopener" class="inline-flex items-center gap-2 mt-7 bg-emerald-800 hover:bg-emerald-900 text-white font-bold rounded-full px-6 py-3 transition"><i class="fa-solid fa-map-location-dot"></i> Cari di Google Maps</a>
+          <p class="text-xs text-gray-400 mt-3">Tautan Maps mencari area umum, bukan pin alamat rumah yang terverifikasi.</p>
+        </div>
+        <div class="rounded-3xl bg-emerald-950 text-white p-7 sm:p-10 flex flex-col justify-between">
+          <div>
+            <p class="section-kicker uppercase text-xs font-extrabold text-[#f5c451]">Hubungi pengelola</p>
+            <h2 class="text-3xl font-extrabold mt-3">Rencanakan menginap Anda.</h2>
+            <p class="text-emerald-100 leading-7 mt-4">Tanyakan harga, tanggal tersedia, kapasitas tamu, dan detail fasilitas sebelum melakukan pemesanan.</p>
+            <div class="flex items-center gap-4 mt-7">
+              <span class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-3xl text-[#f5c451]"><i class="fa-brands fa-whatsapp"></i></span>
+              <div><span class="text-sm text-emerald-200">WhatsApp</span><a href="https://wa.me/6287715305408" target="_blank" rel="noopener" class="block text-xl sm:text-2xl font-extrabold hover:text-[#f5c451]">0877-1530-5408</a></div>
+            </div>
+          </div>
+          <a href="https://wa.me/6287715305408?text=Halo%20Yogya%20Homestay%2C%0ASaya%20ingin%20bertanya%20tentang%20reservasi.%0ATanggal%20check-in%3A%20%0ATanggal%20check-out%3A%20%0AJumlah%20tamu%3A%20" target="_blank" rel="noopener" class="mt-8 inline-flex items-center justify-center gap-3 bg-[#f5c451] hover:bg-amber-300 text-emerald-950 font-extrabold px-6 py-4 rounded-full transition"><i class="fa-brands fa-whatsapp text-xl"></i> Hubungi & Cek Ketersediaan</a>
+        </div>
+      </div>
+    </section>
+    <section class="py-12 bg-[#f5c451]">
+      <div class="max-w-5xl mx-auto px-4 text-center">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-emerald-950">Butuh tempat nyaman untuk keluarga?</h2>
+        <p class="text-emerald-900/80 mt-3">Hubungi kami untuk informasi harga dan ketersediaan tanggal menginap Anda.</p>
+        <a href="https://wa.me/6287715305408?text=Halo%20Yogya%20Homestay%2C%20mohon%20informasi%20harga%20dan%20ketersediaan." target="_blank" rel="noopener" class="inline-flex items-center gap-2 mt-5 bg-emerald-950 hover:bg-emerald-900 text-white px-7 py-3.5 rounded-full font-bold transition"><i class="fa-brands fa-whatsapp text-xl"></i> Chat Sekarang</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[#052e24] text-emerald-100 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row gap-4 items-center justify-between">
+      <a href="#beranda" class="brand font-extrabold tracking-wide">YOGYA <span class="text-[#f5c451]">HOMESTAY</span></a>
+      <p class="text-sm text-emerald-200/80 text-center">© <span id="year"></span> Yogya Homestay. Hak cipta dilindungi.</p>
+      <a href="#beranda" class="text-sm hover:text-[#f5c451]">Kembali ke atas ↑</a>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/6287715305408?text=Halo%20Yogya%20Homestay%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener" aria-label="Chat WhatsApp" class="fixed bottom-5 right-5 z-30 w-14 h-14 rounded-full bg-[#20c765] hover:bg-green-600 text-white text-3xl flex items-center justify-center shadow-2xl transition hover:scale-105"><i class="fa-brands fa-whatsapp"></i></a>
+
+  <div id="lightbox" class="hidden fixed inset-0 z-50 items-center justify-center p-4" role="dialog" aria-modal="true" aria-label="Pratinjau foto">
+    <button id="close-lightbox" class="absolute top-5 right-5 w-12 h-12 rounded-full bg-white/10 text-white text-2xl" aria-label="Tutup foto"><i class="fa-solid fa-xmark"></i></button>
+    <img id="lightbox-image" alt="Foto Yogya Homestay diperbesar" class="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl">
+  </div>
+
+  <script>
+    /*
+      GANTI ID FOTO DI BAWAH DENGAN ID FILE GOOGLE DRIVE ANDA.
+      Contoh: https://drive.google.com/file/d/1AbCdEfGh123456/view
+      Maka isi ID: '1AbCdEfGh123456'
+      Untuk sementara ID yang belum diganti akan menampilkan ilustrasi pengganti.
+    */
+    const DRIVE_PHOTOS = {
+      depan:  'GANTI_ID_FOTO_TAMPAK_DEPAN',
+      kamar1: 'GANTI_ID_FOTO_KAMAR_TIDUR',
+      ruang:  'GANTI_ID_FOTO_RUANG_TAMU',
+      dapur:  'GANTI_ID_FOTO_DAPUR',
+      teras:  'GANTI_ID_FOTO_TERAS'
+    };
+
+    function driveImageUrl(id) {
+      return 'https://drive.google.com/uc?export=view&id=' + encodeURIComponent(id);
+    }
+
+    function placeholderSvg(label) {
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+        <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#dcefe3"/><stop offset="1" stop-color="#a9d1b9"/></linearGradient></defs>
+        <rect width="1200" height="800" fill="url(#g)"/>
+        <circle cx="970" cy="140" r="72" fill="#f5c451" opacity=".9"/>
+        <path d="M0 620 L270 390 L430 530 L700 280 L1200 650 V800 H0Z" fill="#7daf91" opacity=".65"/>
+        <rect x="390" y="330" width="420" height="300" rx="18" fill="#fffdf6"/>
+        <path d="M340 350 L600 150 L860 350Z" fill="#0b6048"/>
+        <rect x="455" y="410" width="105" height="100" rx="6" fill="#b5d9c3"/>
+        <rect x="640" y="410" width="105" height="100" rx="6" fill="#b5d9c3"/>
+        <rect x="555" y="510" width="90" height="120" rx="6" fill="#8cbaa0"/>
+        <text x="600" y="720" text-anchor="middle" font-family="Arial,sans-serif" font-size="36" font-weight="700" fill="#064e3b">${label}</text>
+      </svg>`;
+      return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+    }
+
+    function setPhoto(img, key) {
+      const id = DRIVE_PHOTOS[key];
+      const label = ({depan:'Tampak Depan Homestay',kamar1:'Kamar Tidur',ruang:'Ruang Tamu',dapur:'Dapur',teras:'Teras & Halaman'})[key] || 'Yogya Homestay';
+      if (!id || id.startsWith('GANTI_ID_')) {
+        img.src = placeholderSvg(label);
+        img.dataset.placeholder = 'true';
+        return;
+      }
+      img.src = driveImageUrl(id);
+      img.onerror = function () {
+        this.onerror = null;
+        this.src = placeholderSvg(label);
+        this.dataset.placeholder = 'true';
+      };
+    }
+
+    document.querySelectorAll('[data-drive-photo]').forEach(function (el) {
+      const key = el.dataset.drivePhoto;
+      const img = el.tagName.toLowerCase() === 'img' ? el : el.querySelector('img');
+      if (img) setPhoto(img, key);
+    });
+    setPhoto(document.getElementById('hero-photo'), 'depan');
+
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 20) {
+        header.classList.add('bg-emerald-950/95', 'shadow-lg');
+      } else {
+        header.classList.remove('bg-emerald-950/95', 'shadow-lg');
+      }
+    }, { passive: true });
+
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', function () {
+      const willOpen = mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden');
+      menuBtn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      menuBtn.innerHTML = willOpen ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+    });
+    document.querySelectorAll('#mobile-menu a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileMenu.classList.add('hidden');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    document.querySelectorAll('#gallery-grid button').forEach(function (button) {
+      button.addEventListener('click', function () {
+        const img = button.querySelector('img');
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt;
+        lightbox.classList.remove('hidden');
+        lightbox.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    function closeLightbox() {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('close-lightbox').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
