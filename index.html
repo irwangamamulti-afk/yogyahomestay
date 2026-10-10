@@ -1,124 +1,212 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yogya Homestay - Pilihan Tepat untuk Menginap di Yogyakarta</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
-    <!-- Header / Hero Section -->
-    <header class="bg-emerald-800 text-white shadow-md">
-        <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center">
-            <div class="flex items-center space-x-3 mb-4 md:mb-0">
-                <div class="bg-yellow-400 p-3 rounded-xl text-emerald-900 font-bold text-2xl shadow">
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
+    <!-- Header & Navbar Landing Page -->
+    <header class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo & Brand -->
+            <a href="#" class="flex items-center space-x-3">
+                <div class="bg-yellow-400 p-2.5 rounded-xl text-emerald-900 font-bold text-xl shadow">
                     <i class="fa-solid fa-house-chimney"></i>
                 </div>
                 <div>
-                    <h1 class="text-2xl md:text-3xl font-extrabold tracking-wide">YOGYA HOMESTAY</h1>
-                    <p class="text-emerald-200 text-sm">Pilihan tepat untuk menginap di Yogyakarta</p>
+                    <h1 class="text-xl md:text-2xl font-extrabold tracking-wide">YOGYA HOMESTAY</h1>
+                    <p class="text-emerald-200 text-xs hidden sm:block">Pilihan tepat untuk menginap di Yogyakarta</p>
                 </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium">
+                <a href="#beranda" class="hover:text-yellow-400 transition">Beranda</a>
+                <a href="#fasilitas" class="hover:text-yellow-400 transition">Fasilitas</a>
+                <a href="#lokasi" class="hover:text-yellow-400 transition">Lokasi</a>
+                <a href="#kontak" class="hover:text-yellow-400 transition">Kontak</a>
+            </nav>
+
+            <!-- CTA Button Header -->
+            <div class="hidden lg:block">
+                <a href="https://wa.me/6287715305408?text=Halo%20Yogya%20Homestay,%20saya%20tertarik%20untuk%20reservasi." target="_blank" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow transition flex items-center space-x-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Reservasi</span>
+                </a>
             </div>
-            <div class="bg-yellow-400 text-emerald-900 px-4 py-2 rounded-lg font-semibold text-sm shadow">
-                <i class="fa-solid fa-bed mr-1"></i> Rumah 2 Kamar | 1 Kamar Mandi
-            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-emerald-800 px-4 pt-2 pb-4 space-y-3 border-t border-emerald-700">
+            <a href="#beranda" class="block hover:text-yellow-400 transition py-1">Beranda</a>
+            <a href="#fasilitas" class="block hover:text-yellow-400 transition py-1">Fasilitas</a>
+            <a href="#lokasi" class="block hover:text-yellow-400 transition py-1">Lokasi</a>
+            <a href="#kontak" class="block hover:text-yellow-400 transition py-1">Kontak</a>
+            <a href="https://wa.me/6287715305408?text=Halo%20Yogya%20Homestay,%20saya%20tertarik%20untuk%20reservasi." target="_blank" class="block bg-green-500 text-center text-white py-2 rounded-lg font-semibold shadow">
+                <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp (0877-1530-5408)
+            </a>
         </div>
     </header>
 
-    <!-- Banner Utama -->
-    <section class="bg-emerald-900 text-white py-16 px-4 text-center">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Rumah Nyaman untuk Keluarga atau Rombongan![cite: 3]</h2>
-            <p class="text-lg text-emerald-100 mb-8 italic">"Nyaman huniannya, luas parkirnya, strategis lokasinya!"[cite: 3]</p>
-            <a href="https://wa.me/6287715305408?text=Halo%20Yogya%20Homestay,%20saya%20tertarik%20untuk%20reservasi." target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 inline-flex items-center space-x-3 text-lg">
-                <i class="fa-brands fa-whatsapp text-2xl"></i>
-                <span>Hubungi WhatsApp (0877-1530-5408)[cite: 3]</span>
-            </a>
+    <!-- Hero Section -->
+    <section id="beranda" class="bg-gradient-to-b from-emerald-900 to-emerald-800 text-white py-12 md:py-20 px-4">
+        <div class="container mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div class="text-center md:text-left space-y-6">
+                <div class="inline-block bg-yellow-400 text-emerald-900 px-4 py-1.5 rounded-full font-bold text-sm shadow">
+                    <i class="fa-solid fa-bed mr-1"></i> Rumah 2 Kamar | 1 Kamar Mandi
+                </div>
+                <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">
+                    Rumah Nyaman untuk Keluarga atau Rombongan![cite: 1]
+                </h2>
+                <p class="text-lg md:text-xl text-emerald-100 italic">
+                    "Nyaman huniannya, luas parkirnya, strategis lokasinya!"[cite: 1]
+                </p>
+                <div>
+                    <a href="https://wa.me/6287715305408?text=Halo%20Yogya%20Homestay,%20saya%20tertarik%20untuk%20reservasi." target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3.5 px-8 rounded-full shadow-lg transition duration-300 inline-flex items-center space-x-3 text-base md:text-lg">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        <span>Hubungi WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-emerald-700 w-full max-w-lg">
+                    <!-- Menampilkan Gambar Rumah -->
+                    <img src="1000268384.jpg" alt="Yogya Homestay" class="w-full h-auto object-cover hover:scale-105 transition duration-500">
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-white text-center">
+                        <p class="font-semibold text-sm">Fasad / Teras & Garasi Rumah No. 27</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Konten Utama -->
-    <main class="container mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Konten Utama (Fasilitas & Lokasi) -->
+    <main class="container mx-auto px-4 py-12 md:py-16 max-w-6xl space-y-12">
+        
         <!-- Fasilitas Rumah -->
-        <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-emerald-600">
-            <h3 class="text-2xl font-bold text-emerald-800 mb-6 flex items-center">
-                <i class="fa-solid fa-list-check mr-3 text-emerald-600"></i> Fasilitas Rumah[cite: 3]
+        <section id="fasilitas" class="bg-white p-6 md:p-10 rounded-2xl shadow-md border-t-4 border-emerald-600">
+            <h3 class="text-2xl md:text-3xl font-bold text-emerald-800 mb-8 flex items-center">
+                <i class="fa-solid fa-list-check mr-3 text-emerald-600"></i> Fasilitas Rumah[cite: 1]
             </h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="flex items-center space-x-3 p-3 bg-emerald-50 rounded-lg">
-                    <i class="fa-solid fa-bed text-emerald-600 text-xl w-8 text-center"></i>
-                    <span class="font-medium">2 Kamar Tidur[cite: 3]</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="flex items-center space-x-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 shadow-sm">
+                    <i class="fa-solid fa-bed text-emerald-600 text-2xl w-10 text-center"></i>
+                    <span class="font-semibold text-gray-700">2 Kamar Tidur[cite: 1]</span>
                 </div>
-                <div class="flex items-center space-x-3 p-3 bg-emerald-50 rounded-lg">
-                    <i class="fa-solid fa-bath text-emerald-600 text-xl w-8 text-center"></i>
-                    <span class="font-medium">1 Kamar Mandi[cite: 3]</span>
+                <div class="flex items-center space-x-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 shadow-sm">
+                    <i class="fa-solid fa-bath text-emerald-600 text-2xl w-10 text-center"></i>
+                    <span class="font-semibold text-gray-700">1 Kamar Mandi[cite: 1]</span>
                 </div>
-                <div class="flex items-center space-x-3 p-3 bg-emerald-50 rounded-lg">
-                    <i class="fa-solid fa-couch text-emerald-600 text-xl w-8 text-center"></i>
-                    <span class="font-medium">Ruang Tamu[cite: 3]</span>
+                <div class="flex items-center space-x-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 shadow-sm">
+                    <i class="fa-solid fa-couch text-emerald-600 text-2xl w-10 text-center"></i>
+                    <span class="font-semibold text-gray-700">Ruang Tamu[cite: 1]</span>
                 </div>
-                <div class="flex items-center space-x-3 p-3 bg-emerald-50 rounded-lg">
-                    <i class="fa-solid fa-utensils text-emerald-600 text-xl w-8 text-center"></i>
-                    <span class="font-medium">Dapur[cite: 3]</span>
+                <div class="flex items-center space-x-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 shadow-sm">
+                    <i class="fa-solid fa-utensils text-emerald-600 text-2xl w-10 text-center"></i>
+                    <span class="font-semibold text-gray-700">Dapur[cite: 1]</span>
                 </div>
-                <div class="flex items-center space-x-3 p-3 bg-emerald-50 rounded-lg">
-                    <i class="fa-solid fa-droplet text-emerald-600 text-xl w-8 text-center"></i>
-                    <span class="font-medium">Air PDAM[cite: 3]</span>
+                <div class="flex items-center space-x-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 shadow-sm">
+                    <i class="fa-solid fa-droplet text-emerald-600 text-2xl w-10 text-center"></i>
+                    <span class="font-semibold text-gray-700">Air PDAM[cite: 1]</span>
                 </div>
-                <div class="flex items-center space-x-3 p-3 bg-emerald-50 rounded-lg">
-                    <i class="fa-solid fa-bolt text-emerald-600 text-xl w-8 text-center"></i>
-                    <span class="font-medium">Listrik 900 Watt[cite: 3]</span>
+                <div class="flex items-center space-x-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 shadow-sm">
+                    <i class="fa-solid fa-bolt text-emerald-600 text-2xl w-10 text-center"></i>
+                    <span class="font-semibold text-gray-700">Listrik 900 Watt[cite: 1]</span>
                 </div>
-                <div class="flex items-center space-x-3 p-3 bg-emerald-50 rounded-lg">
-                    <i class="fa-solid fa-car text-emerald-600 text-xl w-8 text-center"></i>
-                    <span class="font-medium">Garasi & Teras[cite: 3]</span>
+                <div class="flex items-center space-x-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 shadow-sm">
+                    <i class="fa-solid fa-car text-emerald-600 text-2xl w-10 text-center"></i>
+                    <span class="font-semibold text-gray-700">Garasi & Teras[cite: 1]</span>
                 </div>
-                <div class="flex items-center space-x-3 p-3 bg-emerald-50 rounded-lg">
-                    <i class="fa-solid fa-tree text-emerald-600 text-xl w-8 text-center"></i>
-                    <span class="font-medium">Halaman Luas (Parkir Banyak)[cite: 3]</span>
+                <div class="flex items-center space-x-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 shadow-sm">
+                    <i class="fa-solid fa-tree text-emerald-600 text-2xl w-10 text-center"></i>
+                    <span class="font-semibold text-gray-700">Halaman Luas (Parkir Banyak)[cite: 1]</span>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Lokasi Strategis & QR Code WhatsApp -->
-        <div class="space-y-8">
+        <!-- Lokasi Strategis & QR Code Grid -->
+        <div id="lokasi" class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Lokasi Strategis -->
-            <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-red-500">
-                <h3 class="text-2xl font-bold text-red-600 mb-6 flex items-center">
-                    <i class="fa-solid fa-location-dot mr-3"></i> Lokasi Strategis[cite: 3]
-                </h3>
-                <ul class="space-y-4">
-                    <li class="flex items-start space-x-3">
-                        <i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i>
-                        <span class="font-medium">Perumahan Kembang Putih[cite: 3]</span>
-                    </li>
-                    <li class="flex items-start space-x-3">
-                        <i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i>
-                        <span class="font-medium">Dekat Puncak Bibis[cite: 3]</span>
-                    </li>
-                    <li class="flex items-start space-x-3">
-                        <i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i>
-                        <span class="font-medium">Dekat kampus baru UIN Sunan Kalijaga[cite: 3]</span>
-                    </li>
-                </ul>
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border-t-4 border-red-500 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-2xl font-bold text-red-600 mb-6 flex items-center">
+                        <i class="fa-solid fa-location-dot mr-3"></i> Lokasi Strategis[cite: 1]
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-circle-check text-emerald-600 mt-1 text-lg"></i>
+                            <span class="font-medium text-gray-700">Perumahan Kembang Putih[cite: 1]</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-circle-check text-emerald-600 mt-1 text-lg"></i>
+                            <span class="font-medium text-gray-700">Dekat Puncak Bibis[cite: 1]</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-circle-check text-emerald-600 mt-1 text-lg"></i>
+                            <span class="font-medium text-gray-700">Dekat kampus baru UIN Sunan Kalijaga[cite: 1]</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mt-8 p-4 bg-red-50 rounded-xl border border-red-100">
+                    <p class="text-sm text-red-700 font-medium">
+                        <i class="fa-solid fa-info-circle mr-1"></i> Akses jalan mudah dan lingkungan yang tenang, sangat cocok untuk liburan keluarga.
+                    </p>
+                </div>
             </div>
 
-            <!-- QR Code WhatsApp -->
-            <div class="bg-white p-6 rounded-2xl shadow-md text-center border-t-4 border-green-500">
-                <h3 class="text-xl font-bold text-gray-800 mb-3">Scan QR WhatsApp</h3>
-                <div class="flex justify-center mb-4">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://wa.me/6287715305408" alt="QR Code WhatsApp Yogya Homestay" class="border-4 border-emerald-100 rounded-lg shadow">
+            <!-- QR Code WhatsApp & Kontak -->
+            <div id="kontak" class="bg-white p-6 md:p-8 rounded-2xl shadow-md text-center border-t-4 border-green-500 flex flex-col justify-between items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Scan QR WhatsApp</h3>
+                    <div class="flex justify-center mb-4">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://wa.me/6287715305408" alt="QR Code WhatsApp Yogya Homestay" class="border-4 border-emerald-100 rounded-lg shadow">
+                    </div>
+                    <p class="text-gray-600 font-semibold mb-1">Hubungi Kami Langsung:</p>
+                    <a href="https://wa.me/6287715305408" class="text-2xl md:text-3xl font-extrabold text-green-600 hover:underline">0877-1530-5408[cite: 1]</a>
                 </div>
-                <p class="text-gray-600 font-semibold mb-1">Hubungi Kami:</p>
-                <a href="https://wa.me/6287715305408" class="text-2xl font-bold text-green-600 hover:underline">0877-1530-5408[cite: 3]</a>
+                <div class="mt-6 w-full">
+                    <a href="https://wa.me/6287715305408?text=Halo%20Yogya%20Homestay,%20saya%20tertarik%20untuk%20reservasi." target="_blank" class="w-full block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-xl shadow transition text-center">
+                        <i class="fa-brands fa-whatsapp mr-2 text-xl"></i> Chat via WhatsApp Sekarang
+                    </a>
+                </div>
             </div>
         </div>
+
     </main>
 
     <!-- Footer -->
-    <footer class="bg-emerald-900 text-emerald-200 text-center py-6">
-        <p>&copy; 2026 Yogya Homestay (yogyahomestay.com). All Rights Reserved.</p>
+    <footer class="bg-emerald-900 text-emerald-200 text-center py-6 mt-12 border-t border-emerald-800">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2026 Yogya Homestay (yogyahomestay.com). All Rights Reserved.</p>
+        </div>
     </footer>
+
+    <!-- JavaScript untuk Toggle Menu Mobile -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Tutup menu mobile ketika salah satu link diklik
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
